@@ -1,0 +1,164 @@
+<!-- Create a basic HTML5 document structure -->
+
+<!-- Add page title "Music Playlist Manager" -->
+
+<!-- Link external CSS file -->
+
+<!-- Create main container for the app -->
+
+<!-- Add heading for app title -->
+
+<!-- Create a form to add songs -->
+
+<!-- Add input field for song title -->
+
+<!-- Add input field for artist name -->
+
+<!-- Add button to add song to playlist -->
+
+<!-- Create a section to display playlist -->
+
+<!-- Use unordered list to show songs dynamically -->
+
+<!-- Create search input field for filtering songs -->
+
+<!-- Add buttons for shuffle playlist and play order -->
+
+<!-- Create section for favourite songs list -->
+
+<!-- Add button/icon to mark song as favourite -->
+
+<!-- Create section or button to save playlist to file -->
+
+<!-- Link external JavaScript file -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlist Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-music"></i> Music Playlist Manager</h1>
+            <button id="darkModeToggle"><i class="fas fa-moon"></i> Dark Mode</button>
+        </header>
+
+        <form id="songForm">
+            <input type="text" id="title" placeholder="Song Title" required list="songSuggestions">
+            <datalist id="songSuggestions">
+                <option value="Bohemian Rhapsody">
+                <option value="Stairway to Heaven">
+                <option value="Hotel California">
+                <option value="Imagine">
+                <option value="Hey Jude">
+                <option value="Let It Be">
+                <option value="Yesterday">
+                <option value="Billie Jean">
+                <option value="Thriller">
+                <option value="Beat It">
+                <option value="Shape of You">
+                <option value="Uptown Funk">
+                <option value="Happy">
+                <option value="Can't Stop the Feeling!">
+                <option value="Blinding Lights">
+                <option value="Watermelon Sugar">
+                <option value="Levitating">
+                <option value="Good 4 U">
+            </datalist>
+            <input type="text" id="artist" placeholder="Artist Name" required list="artistSuggestions">
+            <datalist id="artistSuggestions">
+                <option value="Queen">
+                <option value="Led Zeppelin">
+                <option value="Eagles">
+                <option value="John Lennon">
+                <option value="The Beatles">
+                <option value="Michael Jackson">
+                <option value="Ed Sheeran">
+                <option value="Mark Ronson ft. Bruno Mars">
+                <option value="Pharrell Williams">
+                <option value="Justin Timberlake">
+                <option value="The Weeknd">
+                <option value="Harry Styles">
+                <option value="Dua Lipa">
+                <option value="Olivia Rodrigo">
+            </datalist>
+            <select id="genre">
+                <option value="">Select Genre</option>
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Classical">Classical</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Country">Country</option>
+                <option value="R&B">R&B</option>
+            </select>
+            <button type="submit"><i class="fas fa-plus"></i> Add Song</button>
+        </form>
+
+        <section id="quickAdd">
+            <h2><i class="fas fa-star"></i> Quick Add Popular Songs</h2>
+            <div class="song-grid">
+                <div class="song-card" onclick="addQuickSong('Bohemian Rhapsody', 'Queen', 'Rock')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Bohemian Rhapsody - Queen</div>
+                </div>
+                <div class="song-card" onclick="addQuickSong('Shape of You', 'Ed Sheeran', 'Pop')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Shape of You - Ed Sheeran</div>
+                </div>
+                <div class="song-card" onclick="addQuickSong('Blinding Lights', 'The Weeknd', 'Pop')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Blinding Lights - The Weeknd</div>
+                </div>
+                <div class="song-card" onclick="addQuickSong('Hotel California', 'Eagles', 'Rock')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Hotel California - Eagles</div>
+                </div>
+                <div class="song-card" onclick="addQuickSong('Billie Jean', 'Michael Jackson', 'Pop')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Billie Jean - Michael Jackson</div>
+                </div>
+                <div class="song-card" onclick="addQuickSong('Stairway to Heaven', 'Led Zeppelin', 'Rock')">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Stairway to Heaven - Led Zeppelin</div>
+                </div>
+            </div>
+        </section>
+
+        <input type="text" id="search" placeholder="Search by title, artist, or genre">
+
+        <div class="buttons">
+            <button onclick="shufflePlaylist()"><i class="fas fa-random"></i> Shuffle</button>
+            <button onclick="resetOrder()"><i class="fas fa-sort"></i> Play Order</button>
+            <button onclick="saveToFile()"><i class="fas fa-download"></i> Save Playlist</button>
+            <button onclick="playNext()"><i class="fas fa-play"></i> Play Next</button>
+            <button onclick="pausePlay()"><i class="fas fa-pause"></i> Pause</button>
+        </div>
+
+        <section id="nowPlaying">
+            <h2><i class="fas fa-headphones"></i> Now Playing</h2>
+            <div id="currentSong">No song playing</div>
+        </section>
+
+        <section id="playlistSection">
+            <h2><i class="fas fa-list"></i> Playlist</h2>
+            <ul id="playlist"></ul>
+        </section>
+
+        <section id="favouritesSection">
+            <h2><i class="fas fa-heart"></i> Favourite Songs</h2>
+            <ul id="favourites"></ul>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
