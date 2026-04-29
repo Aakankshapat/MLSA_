@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Chatbot</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+height:100vh;
+background:
+radial-gradient(circle at top left,#0f766e 0%,#071827 45%,#050816 100%);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow:hidden;
+color:white;
+}
+
+.container{
+width:1500px;
+height:900px;
+display:grid;
+grid-template-columns:420px 1fr;
+gap:20px;
+}
+
+.sidebar{
+
+background:rgba(5,15,35,0.85);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-radius:35px;
+padding:35px;
+
+box-shadow:
+0 0 40px rgba(0,255,255,0.08);
+
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:20px;
+margin-bottom:40px;
+}
+
+.icon{
+width:70px;
+height:70px;
+border-radius:20px;
+background:#11d9c5;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+font-weight:bold;
+color:black;
+}
+
+.logo h1{
+font-size:56px;
+font-weight:800;
+}
+
+.desc{
+font-size:28px;
+line-height:1.8;
+color:#9fb4c8;
+margin-bottom:40px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:15px;
+margin-bottom:40px;
+}
+
+.card{
+background:#051425;
+padding:25px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.card h2{
+font-size:42px;
+margin-bottom:8px;
+}
+
+.card p{
+color:#8ba2b7;
+letter-spacing:4px;
+}
+
+.section-title{
+color:#94a3b8;
+letter-spacing:5px;
+margin-bottom:20px;
+font-size:20px;
+}
+
+.mode{
+padding:25px;
+border-radius:25px;
+margin-bottom:20px;
+background:#051425;
+border:1px solid rgba(255,255,255,0.05);
+cursor:pointer;
+transition:0.3s;
+}
+
+.mode.active{
+background:#19d3c5;
+color:black;
+}
+
+.mode h3{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.mode p{
+font-size:22px;
+opacity:0.8;
+}
+
+.chat-area{
+
+background:rgba(5,15,35,0.88);
+border-radius:35px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+
+}
+
+.topbar{
+height:120px;
+padding:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.top-left{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.top-icon{
+width:70px;
+height:70px;
+border-radius:50%;
+background:#061b36;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+}
+
+.top-title h2{
+font-size:38px;
+}
+
+.top-title p{
+font-size:22px;
+color:#8ba2b7;
+}
+
+.live{
+padding:15px 25px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.1);
+font-size:22px;
+color:#11d9c5;
+}
+
+.chat-box{
+height:620px;
+padding:30px;
+overflow-y:auto;
+}
+
+.message{
+max-width:850px;
+padding:30px;
+border-radius:30px;
+background:#172750;
+font-size:32px;
+line-height:1.6;
+margin-bottom:20px;
+animation:fade 0.3s ease;
+}
+
+.user{
+margin-left:auto;
+background:#0f766e;
+}
+
+.tag{
+color:#11d9c5;
+font-size:18px;
+letter-spacing:6px;
+margin-bottom:15px;
+}
+
+.bottom{
+padding:25px;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.quick{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.quick button{
+background:#061527;
+border:1px solid rgba(255,255,255,0.08);
+padding:15px 25px;
+border-radius:30px;
+color:#9fb4c8;
+font-size:20px;
+cursor:pointer;
+}
+
+.input-area{
+display:flex;
+gap:15px;
+}
+
+input{
+flex:1;
+padding:30px;
+border:none;
+border-radius:30px;
+background:#031120;
+color:white;
+font-size:26px;
+outline:none;
+}
+
+.send{
+width:90px;
+border:none;
+border-radius:30px;
+background:#10cfc0;
+font-size:30px;
+cursor:pointer;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+
+<div class="logo">
+<div class="icon"></div>
+<h1>Smart Chatbot</h1>
+</div>
+
+<p class="desc">
+A responsive web chatbot that shifts between friendly, motivational, and sarcastic personalities.
+</p>
+
+<div class="stats">
+
+<div class="card">
+<h2>3</h2>
+<p>MODES</p>
+</div>
+
+<div class="card">
+<h2>Instant</h2>
+<p>RESPONSE</p>
+</div>
+
+<div class="card">
+<h2>Live</h2>
+<p>INTERFACE</p>
+</div>
+
+</div>
+
+<h3 class="section-title">PERSONALITY MODE</h3>
+
+<div class="mode active" onclick="setMode('friendly',this)">
+<h3>Friendly</h3>
+<p>Warm, helpful, upbeat</p>
+</div>
+
+<div class="mode" onclick="setMode('motivational',this)">
+<h3>Motivational</h3>
+<p>Confident, energizing</p>
+</div>
+
+<div class="mode" onclick="setMode('sarcastic',this)">
+<h3>Sarcastic</h3>
+<p>Witty, sharp replies</p>
+</div>
+
+</div>
+
+<div class="chat-area">
+
+<div class="topbar">
+
+<div class="top-left">
+
+<div class="top-icon"></div>
+
+<div class="top-title">
+<h2>Friendly Assistant</h2>
+<p>Typing animation • personality-aware replies</p>
+</div>
+
+</div>
+
+<div class="live"> Live</div>
+
+</div>
+
+<div class="chat-box" id="chatBox">
+
+<div class="message">
+<div class="tag">FRIENDLY</div>
+Hey there! I'm tuned to friendly mode. What would you like to talk about?
+</div>
+
+</div>
+
+<div class="bottom">
+
+<div class="quick">
+
+<button onclick="quickMsg('Give me an idea')">Give me an idea</button>
+
+<button onclick="quickMsg('Motivate me')">Motivate me</button>
+
+<button onclick="quickMsg('Make it funny')">Make it funny</button>
+
+</div>
+
+<div class="input-area">
+
+<input type="text" id="input" placeholder="Message the bot...">
+
+<button class="send" onclick="sendMessage()">➤</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let currentMode = "friendly";
+
+function setMode(mode,element){
+
+currentMode = mode;
+
+document.querySelectorAll('.mode').forEach(m=>{
+m.classList.remove('active');
+});
+
+element.classList.add('active');
+
+}
+
+function quickMsg(text){
+
+document.getElementById("input").value = text;
+
+sendMessage();
+
+}
+
+function sendMessage(){
+
+const input = document.getElementById("input");
+
+const text = input.value.trim();
+
+if(text==="") return;
+
+const chatBox = document.getElementById("chatBox");
+
+const user = document.createElement("div");
+
+user.className = "message user";
+
+user.innerHTML = text;
+
+chatBox.appendChild(user);
+
+setTimeout(()=>{
+
+const bot = document.createElement("div");
+
+bot.className = "message";
+
+bot.innerHTML = `<div class="tag">${currentMode.toUpperCase()}</div>` + getReply();
+
+chatBox.appendChild(bot);
+
+chatBox.scrollTop = chatBox.scrollHeight;
+
+},800);
+
+input.value="";
+
+chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+function getReply(){
+
+const replies = {
+
+friendly:[
+"You’re doing amazing today ",
+"I’d love to help with that ",
+"That sounds exciting!",
+"Tell me more "
+],
+
+motivational:[
+"You are capable of incredible things ",
+"Keep pushing forward ",
+"Success starts with consistency "
+],
+
+sarcastic:[
+"Wow. Truly revolutionary ",
+"That definitely changed my life.",
+"Impressive. Almost."
+]
+
+};
+
+return replies[currentMode][Math.floor(Math.random()*replies[currentMode].length)];
+
+}
+
+</script>
+
+</body>
+</html>
